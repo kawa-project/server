@@ -8,6 +8,9 @@ const {
 
 router.use(authenticate);
 
+// get all item cart
+router.get('/', authorizationCustomer, CartController.getAllCart);
+
 // create cart using productId
 router.post('/:id', authorizationCustomer, CartController.createCart);
 

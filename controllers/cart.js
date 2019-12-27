@@ -271,6 +271,15 @@ class CartController {
             })
             .catch(next);
     }
+
+    static getAllCart(req, res, next) {
+        Cart.find()
+            .populate('productId')
+            .then(carts => {
+                res.status(200).json(carts);
+            })
+            .catch(next);
+    }
 }
 
 module.exports = CartController;
