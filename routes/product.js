@@ -5,11 +5,17 @@ const {
     authorizationCustomer
 } = require('../middlewares/auth');
 const { ProductController } = require('../controllers');
+const upload = require('../middlewares/gcsUpload');
 
 router.use(authenticate);
 
 // create product
-router.post('/', authorizationAdmin, ProductController.createProduct);
+router.post(
+    '/',
+    authorizationAdmin,
+    upload.single('image'),
+    ProductController.createProduct
+);
 
 // get one product
 router.get('/:id', ProductController.getOneProduct);
