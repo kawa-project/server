@@ -8,14 +8,49 @@ class ProductController {
             size: size,
             stock
         };
-        Product.create({
-            name,
-            price,
-            image,
-            attributes: attributeData
+        Product.findOne({
+            name
         })
             .then(product => {
-                res.status(201).json(product);
+                if (product) {
+                    let attribute = product.attributes;
+                    let isExist = false;
+                    attribute.forEach(element => {
+                        if (
+                            element.color === color.toLowerCase() &&
+                            element.size === Number(size)
+                        ) {
+                            element.stock += Number(stock);
+                            isExist = true;
+                        }
+                    });
+                    if (isExist) {
+                        product.save();
+                        res.status(201).json(product);
+                    } else {
+                        return Product.findOneAndUpdate(
+                            {
+                                _id: product._id
+                            },
+                            {
+                                $push: { attributes: attributeData }
+                            },
+                            {
+                                new: true
+                            }
+                        );
+                    }
+                } else {
+                    return Product.create({
+                        name,
+                        price,
+                        image,
+                        attributes: attributeData
+                    });
+                }
+            })
+            .then(newProduct => {
+                res.status(201).json(newProduct);
             })
             .catch(next);
     }
