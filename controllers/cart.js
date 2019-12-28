@@ -3,7 +3,7 @@ const { Cart, Product } = require('../models');
 class CartController {
     static createCart(req, res, next) {
         const { id } = req.params;
-        const { color, size, stock } = req.body;
+        const { size, stock } = req.body;
         let currentProduct = {};
         let currentAttributes = [];
         Product.findOne({
@@ -19,18 +19,15 @@ class CartController {
             .then(carts => {
                 let currentCart = {};
                 carts.forEach(data => {
-                    if (data.color === color && data.size === Number(size)) {
+                    if (data.size === Number(size)) {
                         currentCart = data;
                     }
                 });
-                if (currentCart.color) {
+                if (currentCart.size) {
                     let isSufficient = false;
                     let newAmount;
                     currentAttributes.forEach(element => {
-                        if (
-                            element.color === currentCart.color &&
-                            element.size === currentCart.size
-                        ) {
+                        if (element.size === currentCart.size) {
                             newAmount = currentCart.amount + 1;
                             if (element.stock >= newAmount) {
                                 isSufficient = true;
@@ -62,10 +59,7 @@ class CartController {
                     let isExist = false;
                     let isSufficient = false;
                     currentAttributes.forEach(element => {
-                        if (
-                            element.color === color &&
-                            element.size === Number(size)
-                        ) {
+                        if (element.size === Number(size)) {
                             if (element.stock >= Number(stock)) {
                                 isExist = true;
                                 isSufficient = true;
@@ -77,7 +71,6 @@ class CartController {
                     if (isExist && isSufficient) {
                         return Cart.create({
                             productId: id,
-                            color,
                             size: Number(size),
                             amount: Number(stock),
                             cost: currentProduct.price * Number(stock),
@@ -122,10 +115,7 @@ class CartController {
                 let isExist = false;
                 let attribute = product.attributes;
                 attribute.forEach(element => {
-                    if (
-                        currentCart.color === element.color &&
-                        currentCart.size === element.size
-                    ) {
+                    if (currentCart.size === element.size) {
                         if (element.stock >= newAmount) {
                             isExist = true;
                             isSufficient = true;
@@ -135,7 +125,6 @@ class CartController {
                     }
                 });
                 if (isExist && isSufficient) {
-                    console.log('masuk sini');
                     return Cart.findOneAndUpdate(
                         {
                             _id: id
@@ -188,10 +177,7 @@ class CartController {
                 let isExist = false;
                 let attribute = product.attributes;
                 attribute.forEach(element => {
-                    if (
-                        currentCart.color === element.color &&
-                        currentCart.size === element.size
-                    ) {
+                    if (currentCart.size === element.size) {
                         if (newAmount > 0) {
                             isExist = true;
                             isSufficient = true;
