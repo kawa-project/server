@@ -15,7 +15,10 @@ class UserController {
                 'https://www.linkkar.com/assets/default/images/default-user.png'
         })
             .then(user => {
-                res.status(201).json(user);
+                res.status(201).json({
+                    user,
+                    message: `Register ${user.username} success`
+                });
             })
             .catch(next);
     }
@@ -33,7 +36,8 @@ class UserController {
                             let token = JWT.generateToken({ id: user._id });
                             let data = {
                                 user,
-                                token
+                                token,
+                                message: `Welcome ${user.username}, Happy Shopping!`
                             };
                             res.status(200).json(data);
                         } else {
@@ -61,7 +65,8 @@ class UserController {
                             let token = JWT.generateToken({ id: user._id });
                             let data = {
                                 user,
-                                token
+                                token,
+                                message: `Welcome ${user.username}, Happy Shopping!`
                             };
                             res.status(200).json(data);
                         } else {
