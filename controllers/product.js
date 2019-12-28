@@ -2,9 +2,8 @@ const { Product } = require('../models');
 
 class ProductController {
     static createProduct(req, res, next) {
-        const { name, price, image, color, size, stock } = req.body;
+        const { name, price, image, size, stock } = req.body;
         let attributeData = {
-            color: color.toLowerCase(),
             size: size,
             stock
         };
@@ -16,10 +15,7 @@ class ProductController {
                     let attribute = product.attributes;
                     let isExist = false;
                     attribute.forEach(element => {
-                        if (
-                            element.color === color.toLowerCase() &&
-                            element.size === Number(size)
-                        ) {
+                        if (element.size === Number(size)) {
                             element.stock += Number(stock);
                             isExist = true;
                         }
@@ -106,7 +102,7 @@ class ProductController {
     }
 
     static updateAttributes(req, res, next) {
-        const { color, size, stock } = req.body;
+        const { size, stock } = req.body;
         const { id } = req.params;
         Product.findOne({
             _id: id
@@ -115,7 +111,7 @@ class ProductController {
                 let attribute = product.attributes;
                 let isExist = false;
                 attribute.forEach(data => {
-                    if (data.color === color && data.size === Number(size)) {
+                    if (data.size === Number(size)) {
                         data.stock += Number(stock);
                         isExist = true;
                     }
@@ -131,7 +127,6 @@ class ProductController {
                         {
                             $push: {
                                 attributes: {
-                                    color,
                                     size: Number(size),
                                     stock: Number(stock)
                                 }
@@ -167,7 +162,7 @@ class ProductController {
     }
 
     static updateStock(req, res, next) {
-        const { color, size, stock } = req.query;
+        const { size, stock } = req.query;
         const { id } = req.params;
         Product.findOne({
             _id: id
@@ -177,10 +172,7 @@ class ProductController {
                     let attribute = product.attributes;
                     let isExist = false;
                     attribute.forEach(data => {
-                        if (
-                            data.color === color &&
-                            data.size === Number(size)
-                        ) {
+                        if (data.size === Number(size)) {
                             if (data.stock >= Number(stock)) {
                                 data.stock -= Number(stock);
                                 isExist = true;

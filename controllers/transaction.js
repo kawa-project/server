@@ -11,7 +11,6 @@ class TransactionController {
                     let obj = {};
                     cost += data.cost;
                     obj.productId = data.productId;
-                    obj.color = data.color;
                     obj.size = data.size;
                     obj.cost = data.cost;
                     obj.amount = data.amount;
