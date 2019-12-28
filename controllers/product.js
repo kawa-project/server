@@ -2,7 +2,7 @@ const { Product } = require('../models');
 
 class ProductController {
     static createProduct(req, res, next) {
-        const { name, price, image, size, stock } = req.body;
+        const { name, price, image, size, stock, desc } = req.body;
         let attributeData = {
             size: size,
             stock
@@ -41,12 +41,16 @@ class ProductController {
                         name,
                         price,
                         image,
+                        desc,
                         attributes: attributeData
                     });
                 }
             })
             .then(newProduct => {
-                res.status(201).json(newProduct);
+                res.status(201).json({
+                    newProduct,
+                    message: 'Add Product Success!'
+                });
             })
             .catch(next);
     }
@@ -70,7 +74,7 @@ class ProductController {
     }
 
     static updateProduct(req, res, next) {
-        const { id } = req.body;
+        const { id } = req.params;
         Product.findOne({
             _id: id
         })
@@ -96,7 +100,10 @@ class ProductController {
                 }
             })
             .then(newProduct => {
-                res.status(200).json(newProduct);
+                res.status(200).json({
+                    newProduct,
+                    message: 'Update Product Success!'
+                });
             })
             .catch(next);
     }
@@ -137,7 +144,10 @@ class ProductController {
                 }
             })
             .then(newProduct => {
-                res.status(200).json(newProduct);
+                res.status(200).json({
+                    newProduct,
+                    message: 'Update Product Success!'
+                });
             })
             .catch(next);
     }
