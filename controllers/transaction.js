@@ -32,6 +32,7 @@ class TransactionController {
     static getAllTransaction(req, res, next) {
         Transaction.find()
             .populate('listProduct.productId')
+            .populate('UserId')
             .then(transaction => {
                 res.status(200).json(transaction);
             })
@@ -43,6 +44,7 @@ class TransactionController {
             UserId: req.decoded.id
         })
             .populate('listProduct.productId')
+            .populate('UserId')
             .then(transaction => {
                 res.status(200).json(transaction);
             })
