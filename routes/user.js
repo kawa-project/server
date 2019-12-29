@@ -15,7 +15,7 @@ router.post('/login', UserController.loginUser);
 router.use(authenticate);
 
 // get user info
-router.get('/', authorizationCustomer, UserController.getUserInfo);
+router.get('/', UserController.getUserInfo);
 
 // edit user profile
 router.put('/', authorizationCustomer, UserController.editUser);
