@@ -8,9 +8,6 @@ const TransactionSchema = new Schema(
                     type: Schema.Types.ObjectId,
                     ref: 'Product'
                 },
-                color: {
-                    type: String
-                },
                 size: {
                     type: Number
                 },
