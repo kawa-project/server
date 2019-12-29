@@ -7,6 +7,7 @@ const {
 const { ProductController } = require('../controllers');
 const upload = require('../middlewares/gcsUpload');
 
+router.get('/', ProductController.getAllProduct);
 router.use(authenticate);
 
 // create product

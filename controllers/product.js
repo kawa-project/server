@@ -73,6 +73,14 @@ class ProductController {
             .catch(next);
     }
 
+    static getAllProduct(req, res, next) {
+        Product.find()
+            .then(products => {
+                res.status(200).json(products);
+            })
+            .catch(next);
+    }
+
     static updateProduct(req, res, next) {
         const { id } = req.params;
         Product.findOne({
