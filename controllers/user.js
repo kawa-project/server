@@ -124,7 +124,10 @@ class UserController {
                 }
             })
             .then(newUser => {
-                res.status(200).json(newUser);
+                res.status(200).json({
+                    newUser,
+                    message: 'Success Update Profile'
+                });
             })
             .catch(next);
     }
