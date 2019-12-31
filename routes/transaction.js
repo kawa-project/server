@@ -25,6 +25,14 @@ router.get(
     TransactionController.getUserTransaction
 );
 
+router.get('/:id', TransactionController.getOneTransaction);
+
+// update image transfer
+router.put('/:id/transfer', TransactionController.updateImageTransfer);
+
+// update image receipt
+router.put('/:id/receipt', TransactionController.updateReceipt);
+
 // update status transaction
 router.put('/:id', TransactionController.updateStatusTransaction);
 

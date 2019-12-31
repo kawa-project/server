@@ -28,7 +28,15 @@ const TransactionSchema = new Schema(
         },
         status: {
             type: String,
-            enum: ['unpaid', 'paid', 'sent', 'received']
+            enum: ['unpaid', 'unconfirm', 'paid', 'sent', 'received']
+        },
+        transfer: {
+            type: String,
+            default: 'none'
+        },
+        receipt: {
+            type: String,
+            default: 'none'
         }
     },
     {

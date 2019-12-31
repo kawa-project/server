@@ -180,7 +180,7 @@ class ProductController {
     }
 
     static updateStock(req, res, next) {
-        const { size, stock } = req.query;
+        const { size, stock } = req.body;
         const { id } = req.params;
         Product.findOne({
             _id: id
