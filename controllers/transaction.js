@@ -51,8 +51,20 @@ class TransactionController {
             .catch(next);
     }
 
+    static getOneTransaction(req, res, next) {
+        const { id } = req.params;
+        console.log(id);
+        Transaction.findOne({
+            _id: id
+        })
+            .then(transaction => {
+                res.status(200).json(transaction);
+            })
+            .catch(next);
+    }
+
     static updateStatusTransaction(req, res, next) {
-        let { paid, sent, received } = req.query;
+        let { unconfirm, paid, sent, received } = req.query;
         let { id } = req.params;
         if (paid) {
             Transaction.findOneAndUpdate(
@@ -102,7 +114,63 @@ class TransactionController {
                     res.status(200).json(transaction);
                 })
                 .catch(next);
+        } else if (unconfirm) {
+            Transaction.findOneAndUpdate(
+                {
+                    _id: id
+                },
+                {
+                    $set: { status: 'unconfirm' }
+                },
+                {
+                    new: true
+                }
+            )
+                .then(transaction => {
+                    res.status(200).json(transaction);
+                })
+                .catch(next);
         }
+    }
+
+    static updateImageTransfer(req, res, next) {
+        const { transfer } = req.body;
+        const { id } = req.params;
+        Transaction.findOneAndUpdate(
+            {
+                _id: id
+            },
+            {
+                $set: { transfer: transfer }
+            },
+            {
+                new: true
+            }
+        )
+            .then(transaction => {
+                res.status(200).json(transaction);
+            })
+            .catch(next);
+    }
+
+    static updateReceipt(req, res, next) {
+        const { receipt } = req.body;
+        const { id } = req.params;
+        Transaction.findOneAndUpdate(
+            {
+                _id: id
+            },
+            {
+                $set: { receipt: receipt }
+            },
+            {
+                new: true
+            }
+        )
+            .then(transaction => {
+                res.status(200).json(transaction);
+            })
+            .catch(next);
     }
 
     static deleteTransaction(req, res, next) {

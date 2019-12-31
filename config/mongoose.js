@@ -1,18 +1,19 @@
-const mongoose = require('mongoose')
-const mongoUri = process.env.MONGO_URI
+const mongoose = require('mongoose');
+const mongoUri = process.env.MONGO_URIURI;
 
-mongoose.connect(
-    mongoUri,
-    {
+mongoose
+    .connect(mongoUri, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
         useUnifiedTopology: true
-    },
-    function(err) {
-        if (err) console.log('failed to connect database')
-        else console.log('Success to connect database')
-    }
-)
+    })
+    .then(_ => {
+        console.log(`Success to connect database`);
+    })
+    .catch(err => {
+        console.log(`failed to connect database`);
+        console.log(`${err}`);
+    });
 
-module.exports = mongoose
+module.exports = mongoose;

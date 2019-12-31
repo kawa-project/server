@@ -31,7 +31,7 @@ router.put('/:id', authorizationAdmin, ProductController.updateProduct);
 router.put('/:id/attr', authorizationAdmin, ProductController.updateAttributes);
 
 // decrease stock of product
-router.patch('/:id', authorizationCustomer, ProductController.updateStock);
+router.patch('/:id', ProductController.updateStock);
 
 // delete stock by admin
 router.delete('/:id', authorizationAdmin, ProductController.deleteProduct);
