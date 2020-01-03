@@ -1,4 +1,5 @@
 module.exports = {
     Password: require('./hashPassword'),
-    JWT: require('./jwtHandler')
+    JWT: require('./jwtHandler'),
+    sendEmail: require('./sendEmail')
 };

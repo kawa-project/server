@@ -1,5 +1,5 @@
 const { User } = require('../models');
-const { Password, JWT } = require('../helpers');
+const { Password, JWT, sendEmail } = require('../helpers');
 
 class UserController {
     static registerUser(req, res, next) {
@@ -15,6 +15,7 @@ class UserController {
                 'https://www.linkkar.com/assets/default/images/default-user.png'
         })
             .then(user => {
+                sendEmail(user, true);
                 res.status(201).json({
                     user,
                     message: `Register ${user.username} success`
@@ -84,6 +85,15 @@ class UserController {
                 })
                 .catch(next);
         }
+    }
+
+    static contactUs(req, res, next) {
+        const { email } = req.body;
+        let user = { email };
+        sendEmail(user, false);
+        res.status(200).json({
+            message: 'Success'
+        });
     }
 
     static getUserInfo(req, res, next) {

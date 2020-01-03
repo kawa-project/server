@@ -12,6 +12,8 @@ router.post('/register', UserController.registerUser);
 // user login
 router.post('/login', UserController.loginUser);
 
+router.post('/contact', UserController.contactUs);
+
 router.use(authenticate);
 
 // get user info
