@@ -20,13 +20,10 @@ function sendEmail(user, isRegister) {
             <h1>Terimakasih ${email} telah mendaftar di Kawa Craft</h1>
             <br>
             <div>
-            Kawa Craft adalah pemain baru dibidang produksi sepatu lifestyle
-            dengan tema workboots untuk laki-laki berbahan kulit pullup dan
-            crazy horse dengan kualitas terbaik. Kawa Berdiri pada tahun 2019
-            ,lebih tepatnya 20 Maret 2019 Kawa sendiri merupakan bahasa jepang
-            yang artinya kulit. Berslogan “ We Are The Craft of Our Towns “
-            yang mencitrakan Kawa sebagai pembuat kerajinan terbaik di Kota
-            Bandung.
+            Kawa Berdiri pada tahun 2019 ,lebih tepatnya 20 Maret 2019 Kawa
+            sendiri merupakan bahasa jepang yang artinya kulit. Berslogan “ We
+            Are The Craft of Our Towns “ yang mencitrakan Kawa sebagai pembuat
+            kerajinan terbaik di Kota Bandung.
             </div>
             <br>
             <div>
@@ -49,13 +46,10 @@ function sendEmail(user, isRegister) {
             <h1>Terimakasih ${email} sudah menghubungi kami</h1>
             <br>
             <div>
-            Kawa Craft adalah pemain baru dibidang produksi sepatu lifestyle
-            dengan tema workboots untuk laki-laki berbahan kulit pullup dan
-            crazy horse dengan kualitas terbaik. Kawa Berdiri pada tahun 2019
-            ,lebih tepatnya 20 Maret 2019 Kawa sendiri merupakan bahasa jepang
-            yang artinya kulit. Berslogan “ We Are The Craft of Our Towns “
-            yang mencitrakan Kawa sebagai pembuat kerajinan terbaik di Kota
-            Bandung.
+            Kawa Berdiri pada tahun 2019 ,lebih tepatnya 20 Maret 2019 Kawa
+            sendiri merupakan bahasa jepang yang artinya kulit. Berslogan “ We
+            Are The Craft of Our Towns “ yang mencitrakan Kawa sebagai pembuat
+            kerajinan terbaik di Kota Bandung.
             </div>
             <br>
             <div>
