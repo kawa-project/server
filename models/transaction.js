@@ -28,7 +28,7 @@ const TransactionSchema = new Schema(
         },
         status: {
             type: String,
-            enum: ['unpaid', 'unconfirm', 'paid', 'sent', 'received']
+            enum: ['unpaid', 'unconfirm', 'reject', 'paid', 'sent', 'received']
         },
         transfer: {
             type: String,
