@@ -64,7 +64,7 @@ class TransactionController {
     }
 
     static updateStatusTransaction(req, res, next) {
-        let { unconfirm, paid, sent, received } = req.query;
+        let { unconfirm, reject, paid, sent, received } = req.query;
         let { id } = req.params;
         if (paid) {
             Transaction.findOneAndUpdate(
@@ -121,6 +121,22 @@ class TransactionController {
                 },
                 {
                     $set: { status: 'unconfirm' }
+                },
+                {
+                    new: true
+                }
+            )
+                .then(transaction => {
+                    res.status(200).json(transaction);
+                })
+                .catch(next);
+        } else if (reject) {
+            Transaction.findOneAndUpdate(
+                {
+                    _id: id
+                },
+                {
+                    $set: { status: 'reject', transfer: 'none' }
                 },
                 {
                     new: true
